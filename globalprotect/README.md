@@ -63,6 +63,7 @@ para que Python también.
 | `TELEGRAM_CHAT_ID` | — | Id del grupo destino (p. ej. `-1001234567890`) |
 | `TELEGRAM_TOPIC_ID` | — | Id del topic, si el grupo es de tipo foro (`message_thread_id`) |
 | `HONEYPOT_DATA_DIR` | la carpeta del proyecto | Dónde escribir `honeypot.log`/`creds.log` (en Vercel, `/tmp`) |
+| `HONEYPOT_DEBUG` | — | `1` (o `LOG_LEVEL=DEBUG`) saca por el log los fallos accesorios: aviso de Telegram, geolocalización, escritura en disco |
 | `LOG_LEVEL` | `INFO` | Nivel de log de la aplicación |
 
 Los nombres de Telegram son los de ShellGuard, y también se aceptan los cortos

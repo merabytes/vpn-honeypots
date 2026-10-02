@@ -393,6 +393,36 @@ def test_json_credential_capture():
         fail("JSON credentials captured", "not in log")
 
 
+def test_telegram_escape():
+    """
+    El aviso de Telegram va con el HTML escapado.
+
+    Se manda con parse_mode=HTML: un '<' en el usuario hace que Telegram rechace
+    el mensaje entero (se pierde la alerta) y un '</code><a href=...>' inyecta
+    enlaces en el aviso que lee el operador.
+    """
+    section("Aviso de Telegram  [escape HTML]")
+    mensaje = honeypot_app._mensaje_credenciales(
+        "ana<b", "clave&secreta", "1.2.3.4",
+        'Mozilla/5.0 </code><a href="tg://user?id=1">aviso</a><code>',
+        "/nf/auth/doAuthentication.do",
+        {"city": "Madrid</b>", "country": "Spain", "countryCode": "ES",
+         "org": "ACME & Co"},
+    )
+    propias = (mensaje.count("<b>") + mensaje.count("</b>")
+               + mensaje.count("<code>") + mensaje.count("</code>"))
+    if mensaje.count("<") == propias:
+        ok("Ni un '<' fuera de las etiquetas del propio aviso")
+    else:
+        fail("Ni un '<' fuera de las etiquetas del propio aviso",
+             f"{mensaje.count('<')} '<' para {propias} etiquetas")
+    for esperado in ("ana&lt;b", "clave&amp;secreta", "Madrid&lt;/b&gt;", "ACME &amp; Co"):
+        if esperado in mensaje:
+            ok(f"Escapado en el aviso: {esperado}")
+        else:
+            fail(f"Escapado en el aviso: {esperado}", mensaje[:120])
+
+
 def test_request_logging():
     """Todos los requests se logean."""
     section("Request logging")
@@ -489,6 +519,7 @@ def main():
         test_vpn_index_alias,
         test_logoff_method_flexibility,
         test_json_credential_capture,
+        test_telegram_escape,
         test_request_logging,
         test_ns_cookie_simulation,
     ]

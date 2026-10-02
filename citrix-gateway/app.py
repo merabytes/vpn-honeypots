@@ -11,6 +11,7 @@ reescribe al host de cada petición, así que el honeypot es agnóstico de marca
 se ve igual que un Citrix Gateway cualquiera, en cualquier dominio.
 """
 import os, re, json, mimetypes, logging, urllib.request, urllib.parse
+from html import escape
 from pathlib import Path
 from datetime import datetime, timezone
 from email.utils import formatdate
@@ -25,6 +26,10 @@ DATA_DIR    = Path(os.environ.get("HONEYPOT_DATA_DIR") or BASE_DIR)
 LOG_FILE    = DATA_DIR / "honeypot.log"
 CREDS_FILE  = DATA_DIR / "creds.log"          # solo CREDENTIAL_CAPTURE events
 LOG_LEVEL   = os.environ.get("LOG_LEVEL", "INFO")
+
+# Modo debug: los fallos accesorios (aviso de Telegram, geolocalización, disco)
+# se callan salvo que se pida verlos, con HONEYPOT_DEBUG=1 o LOG_LEVEL=DEBUG.
+DEBUG = os.environ.get("HONEYPOT_DEBUG") == "1" or LOG_LEVEL.upper() == "DEBUG"
 
 # Página de logon a la que el NetScaler real manda todo lo demás.
 LOGON_PAGE  = "/logon/LogonPoint/tmindex.html"
@@ -73,6 +78,17 @@ logging.basicConfig(
 log = logging.getLogger("honeypot")
 
 
+def _aviso(msg: str) -> None:
+    """
+    Aviso de algo accesorio que falló (el envío del aviso, la geolocalización, el
+    disco). En operación normal no ensucia el log: un honeypot recibe mucho
+    ruido y el operador sólo quiere ver las capturas. Con HONEYPOT_DEBUG=1 (o
+    LOG_LEVEL=DEBUG) sí se cuentan las cosas.
+    """
+    if DEBUG:
+        log.warning(msg)
+
+
 # ─── GeoIP lookup (async, non-blocking) ──────────────────────────────────────
 _geoip_cache: dict = {}
 
@@ -91,12 +107,45 @@ def _geoip(ip: str) -> dict:
             result = {k: data[k] for k in ("country","countryCode","city","isp","org","as") if k in data}
             _geoip_cache[ip] = result
             return result
-    except Exception:
-        pass
+    except Exception as e:
+        _aviso(f"[geo] no se pudo geolocalizar {ip}: {e}")
     return {}
 
 
 # ─── Telegram notificación ────────────────────────────────────────────────────
+def _h(valor) -> str:
+    """
+    Escapa un valor para el HTML de Telegram.
+
+    El aviso se manda con parse_mode=HTML, así que un `<` en el usuario o en el
+    User-Agent rompería el mensaje entero: Telegram lo rechaza con «can't parse
+    entities» y la alerta se pierde. Y sin escapar, un `</code><a href=...>`
+    inyecta enlaces en el aviso que lee el operador.
+    """
+    return escape(str(valor), quote=False)
+
+
+def _mensaje_credenciales(username, password, ip, ua, path, geo) -> str:
+    """Texto del aviso, con todo lo que viene del atacante ya escapado."""
+    geo_str = ""
+    if geo:
+        geo_str = (f"\n🌍 <b>Geo:</b> {_h(geo.get('city', '?'))}, "
+                   f"{_h(geo.get('country', '?'))} ({_h(geo.get('countryCode', '?'))})")
+        if geo.get("org"):
+            geo_str += f"\n🏢 <b>Org:</b> {_h(geo['org'])}"
+
+    return (
+        f"🎣 <b>CREDENTIAL CAPTURED</b>\n"
+        f"━━━━━━━━━━━━━━━━━━━━━━\n"
+        f"👤 <b>User:</b> <code>{_h(username or '?')}</code>\n"
+        f"🔑 <b>Pass:</b> <code>{_h(password or '?')}</code>\n"
+        f"🌐 <b>IP:</b> <code>{_h(ip)}</code>{geo_str}\n"
+        f"🖥 <b>UA:</b> <code>{_h(ua[:80])}</code>\n"
+        f"📍 <b>Path:</b> <code>{_h(path)}</code>\n"
+        f"🕐 <b>TS:</b> {datetime.now(timezone.utc).strftime('%Y-%m-%d %H:%M:%S')} UTC"
+    )
+
+
 def _tg_config():
     """
     Credenciales del bot. Se usan los nombres de ShellGuard y se aceptan los
@@ -141,9 +190,9 @@ def _tg_notify(text: str):
         with urllib.request.urlopen(req, timeout=5) as r:
             data = json.loads(r.read().decode())
         if not data.get("ok"):
-            log.warning(f"[TG] Telegram rechazó el mensaje: {data.get('description')}")
+            _aviso(f"[TG] Telegram rechazó el mensaje: {data.get('description')}")
     except Exception as e:
-        log.warning(f"[TG] Error notificando: {e}")
+        _aviso(f"[TG] Error notificando: {e}")
 
 
 # ─── Log utils ────────────────────────────────────────────────────────────────
@@ -158,7 +207,7 @@ def _append_line(path: Path, line: str) -> None:
         with open(path, "a") as f:
             f.write(line + "\n")
     except OSError as e:
-        log.warning(f"[log] no se pudo escribir {path}: {e}")
+        _aviso(f"[log] no se pudo escribir {path}: {e}")
 
 
 def _log_event(event: str, extra: dict = None):
@@ -252,7 +301,8 @@ def _meta() -> dict:
     if not _meta_cache:
         try:
             _meta_cache.append(json.loads((STATIC_DIR / "_meta.json").read_text()))
-        except Exception:
+        except Exception as e:
+            _aviso(f"[meta] no se pudo leer _meta.json: {e}")
             _meta_cache.append({})
     return _meta_cache[0]
 
@@ -424,23 +474,8 @@ def _capture_credentials():
         _log_event("CREDENTIAL_CAPTURE", event_data)
 
         # Notificación Telegram en tiempo real
-        geo_str = ""
-        if geo:
-            geo_str = f"\n🌍 <b>Geo:</b> {geo.get('city','?')}, {geo.get('country','?')} ({geo.get('countryCode','?')})"
-            if geo.get("org"):
-                geo_str += f"\n🏢 <b>Org:</b> {geo['org']}"
-
-        tg_msg = (
-            f"🎣 <b>CREDENTIAL CAPTURED</b>\n"
-            f"━━━━━━━━━━━━━━━━━━━━━━\n"
-            f"👤 <b>User:</b> <code>{username or '?'}</code>\n"
-            f"🔑 <b>Pass:</b> <code>{password or '?'}</code>\n"
-            f"🌐 <b>IP:</b> <code>{ip}</code>{geo_str}\n"
-            f"🖥 <b>UA:</b> <code>{ua[:80]}</code>\n"
-            f"📍 <b>Path:</b> <code>{request.path}</code>\n"
-            f"🕐 <b>TS:</b> {datetime.now(timezone.utc).strftime('%Y-%m-%d %H:%M:%S')} UTC"
-        )
-        _tg_notify(tg_msg)
+        _tg_notify(_mensaje_credenciales(username, password, ip, ua,
+                                         request.path, geo))
 
     return username, password
 
