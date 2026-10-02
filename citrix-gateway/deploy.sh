@@ -36,8 +36,16 @@ fi
 STAGE="$(mktemp -d)"
 trap 'rm -rf "$STAGE"' EXIT
 
+# El proyecto tiene esta carpeta como Root Directory (para que el repo con los
+# dos honeypots despliegue cada uno por su lado desde git), y Vercel aplica ese
+# ajuste también en los despliegues del CLI: el staging tiene que replicar la
+# carpeta o el builder busca el código donde no está ("No Flask entrypoint
+# found"). Así que se stagea dentro de su carpeta, como en el repo.
+CARPETA="$(basename "$PWD")"
+mkdir -p "$STAGE/$CARPETA"
+
 # Lista blanca: sólo esto viaja al despliegue.
-cp -R app.py asgi.py static_cache requirements.txt .python-version "$STAGE/"
+cp -R app.py asgi.py static_cache requirements.txt .python-version "$STAGE/$CARPETA/"
 mkdir -p "$STAGE/.vercel"
 if [ -f .vercel/project.json ]; then
     cp .vercel/project.json "$STAGE/.vercel/"
@@ -47,6 +55,11 @@ cd "$STAGE"
 if [ ! -f .vercel/project.json ]; then
     vercel link --yes --project "$PROYECTO" --scope "$SCOPE"
 fi
+
+# Refrescar los ajustes del proyecto: los locales pueden estar viejos (por
+# ejemplo sin el Root Directory) y el build se comportaría distinto.
+echo "[VERCEL] Bajando ajustes del proyecto ($TARGET)..."
+vercel pull --yes --environment "$TARGET" >/dev/null
 
 echo "[VERCEL] Construyendo ($TARGET) desde $STAGE..."
 vercel build --yes --target "$TARGET"
