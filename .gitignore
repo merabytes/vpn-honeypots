@@ -1,5 +1,6 @@
 # Entorno y artefactos de cada honeypot: se regeneran con run.sh
 */.venv/
+*/.scan-venv/
 */__pycache__/
 *.pyc
 

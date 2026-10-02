@@ -1,0 +1,72 @@
+name: Vulnerabilidades (Grype)
+
+# Cada push a main, cada PR y una pasada semanal: los CVE de las dependencias
+# aparecen con el tiempo aunque el código no cambie, así que el escaneo
+# programado es la mitad del valor.
+on:
+  push:
+    branches: [main]
+  pull_request:
+  schedule:
+    - cron: "17 6 * * 1"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: grype-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  grype:
+    name: Grype (${{ matrix.honeypot }})
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      security-events: write # subir el SARIF a Code Scanning
+    strategy:
+      fail-fast: false
+      matrix:
+        honeypot: [citrix-gateway, globalprotect]
+    steps:
+      - uses: actions/checkout@v7
+
+      - uses: actions/setup-python@v7
+        with:
+          python-version-file: ${{ matrix.honeypot }}/.python-version
+
+      # requirements.txt sólo fija mínimos (flask>=3.0, ...). Grype necesita
+      # versiones exactas, así que se resuelven aquí igual que hará run.sh al
+      # desplegar: lo que se escanea es lo que se instalaría hoy.
+      - name: Resolver dependencias
+        working-directory: ${{ matrix.honeypot }}
+        run: |
+          python -m venv .scan-venv
+          .scan-venv/bin/python -m pip install --upgrade pip
+          .scan-venv/bin/python -m pip install -r requirements.txt
+          .scan-venv/bin/python -m pip list --format=freeze | tee resolved-deps.txt
+          {
+            echo "### Versiones resueltas — ${{ matrix.honeypot }}"
+            echo '```'
+            cat resolved-deps.txt
+            echo '```'
+          } >> "$GITHUB_STEP_SUMMARY"
+
+      - name: Escanear con Grype
+        uses: anchore/scan-action@v7
+        id: grype
+        with:
+          path: ${{ matrix.honeypot }}/.scan-venv
+          output-format: sarif
+          output-file: grype-${{ matrix.honeypot }}.sarif
+          severity-cutoff: high
+          only-fixed: true
+          fail-build: true
+
+      - name: Subir el SARIF a Code Scanning
+        if: always()
+        uses: github/codeql-action/upload-sarif@v4
+        with:
+          sarif_file: grype-${{ matrix.honeypot }}.sarif
+          category: grype-${{ matrix.honeypot }}
