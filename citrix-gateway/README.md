@@ -69,9 +69,9 @@ Ambos ficheros son JSON por línea:
 | `LOG_LEVEL` | `INFO` | Nivel de log de la aplicación |
 
 Los nombres de Telegram son los de ShellGuard, y también se aceptan los cortos
-`TG_TOKEN`, `TG_CHAT_ID` y `TG_TOPIC_ID`. El bot tiene que estar en el grupo; el
-id del topic es el número que aparece en el enlace de un mensaje de ese topic
-(`t.me/c/<grupo>/<topic>`).
+`TG_TOKEN`, `TG_CHAT_ID` y `TG_TOPIC_ID`. El bot tiene que estar en el grupo. En
+el README del repo está el paso a paso para sacar el id del grupo y el del topic
+(`getUpdates` + `message_thread_id`) y para probarlo antes de fiarse.
 
 El aviso se manda **en el momento**, no en segundo plano: en serverless un hilo
 de fondo puede morir al terminar la respuesta y perder la captura.
