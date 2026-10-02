@@ -1,0 +1,11 @@
+# Entorno y artefactos de cada honeypot: se regeneran con run.sh
+*/.venv/
+*/__pycache__/
+*.pyc
+
+# Enlaces y salida del CLI de Vercel
+*/.vercel/
+
+# Capturas de tráfico real: no van al repo
+*/honeypot.log
+*/creds.log

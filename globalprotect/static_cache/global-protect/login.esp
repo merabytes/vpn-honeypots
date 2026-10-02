@@ -1,0 +1,318 @@
+<html>
+    <!DOCTYPE html>
+
+    <html lang="en">
+      <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=.85">
+        <meta http-equiv="pragma" content="no-cache">
+        <title>GlobalProtect Portal</TITLE>
+        <link rel="shortcut icon" type="image/x-icon" href="portal/images/favicon.ico">
+        <link rel="stylesheet" href="/global-protect/portal/css/bootstrap.min.css">
+        <link rel="stylesheet" href="/global-protect/portal/css/latofonts.css">
+        <script src="portal/js/jquery.min.js"></script>
+        
+        <script src="portal/js/ie10-viewport-bug-workaround.js"></script>
+        <link rel="stylesheet" href="/global-protect/portal/css/ie10-viewport-bug-workaround.css">
+        <link rel="stylesheet" href="/global-protect/portal/css/login.css">
+        
+
+        <style type="text/css">
+            html, body {
+            overflow: auto;
+            }
+        </style>
+
+
+        <script type="text/javascript">
+
+        function loadPage() {
+            
+
+            if (typeof window.Storage !== 'undefined') {
+                window.localStorage.clear();
+            }
+
+           
+            if (document.login.user.value == '')
+                document.login.user.value = "";
+
+            if (document.login.user.value == '')
+                document.login.user.focus();
+
+            var errMsg = "";
+            var respStatus = "Error";
+            var respMsg = "Valid client certificate is required";
+            var autoSubmit = "";
+            var needpasswd = "";
+            var labelUsername = "Username";
+            var labelPassword= "Password";
+            var isChangePasswdForm =  0 ;
+            var valueUser = "";
+
+            
+            var divNewPassword = document.getElementById("dNewPassword");
+            divNewPassword.style.display = "none";
+            var divConfirmNewPassword = document.getElementById("dConfirmNewPassword");
+            divConfirmNewPassword.style.display = "none";
+            var divChangePasswordMsg = document.getElementById("dChangePasswordMsg");
+            divChangePasswordMsg.style.display = "none";
+            var changePasswordMsg = "";
+
+            if (respStatus == "Warning") {
+                
+            } else if (respStatus == "Error") {
+
+                
+                var divUserTitle = document.getElementById("user");
+                if (labelUsername != '')
+                divUserTitle.placeholder = labelUsername;
+                var divPasswdTitle = document.getElementById("passwd");
+                if (labelPassword != '')
+                divPasswdTitle.placeholder = labelPassword;
+
+                if (isChangePasswdForm == 1) {
+                    
+                    document.getElementById("user").value = valueUser;
+
+                    divNewPassword.style.display = "";
+                    divConfirmNewPassword.style.display = "";
+
+                    if (changePasswordMsg != "") {
+                        divChangePasswordMsg.style.display = "";
+                        divChangePasswordMsg.innerHTML = changePasswordMsg;
+                    }
+                } else {
+                    
+                    if (autoSubmit == "true") {
+                        var divUserName = document.getElementById("dUserName");
+                        document.login.user.disabled = true;
+                        var divPassword = document.getElementById("dPassword");
+                        if (needpasswd == "false") {
+                            divPassword.style.display = "none";
+                        }
+                    }
+                }
+                if (errMsg != "")
+                    errMsg += "<br><br>";
+                errMsg += "<li>"+respMsg;
+            } else if ((respStatus == "Challenge") || (respStatus == "challenge")) {
+                var divUserName = document.getElementById("dUserName");
+                divUserName.style.display = "none";
+                var divInputStr = document.getElementById("dInputStr");
+                divInputStr.style.display = "block";
+                divInputStr.innerHTML = respMsg;
+                var divPasswdTitle = document.getElementById("passwd");
+                divPasswdTitle.placeholder = "";
+            } else if (respStatus == "Success") {
+                
+                var divUserTitle = document.getElementById("user");
+                if (labelUsername != '')
+                    divUserTitle.placeholder = labelUsername;
+                var divPasswdTitle = document.getElementById("passwd");
+                if (labelPassword != '')
+                    divPasswdTitle.placeholder = labelPassword;
+
+                if (autoSubmit == "true") {
+                    var divUserName = document.getElementById("dUserName");
+                    document.login.user.disabled = true;
+                    var divPassword = document.getElementById("dPassword");
+                    if (needpasswd == "false") {
+                        divPassword.style.display = "none";
+                        if (respMsg != "") {
+                            if (errMsg != "")
+                                errMsg += "<br><br>";
+                            errMsg += "<li>"+respMsg;
+                        }
+                    }
+                    if (respMsg == "") {
+                        var cac = document.getElementById("dCAC");
+                        cac.style.display = "block";
+                        cac.innerHTML = "The credentials are successfully verified and you will be logged in as user ''. Please click Login button to continue.";
+                    }
+                }
+            }
+            
+
+            if (errMsg != "") {
+                var divObj = document.getElementById("dError");
+
+                divObj.style.display = "block";
+                divObj.innerHTML = errMsg;
+            }
+        } 
+
+function submitClicked() {
+    var thisForm = document.getElementById("login_form");
+    var divObj = document.getElementById("dError");
+
+    
+    var in_change_passwd =  0 ;
+    if (in_change_passwd == 1) {
+        if (thisForm.passwd.value == "") {
+            divObj.style.display = "block";
+            divObj.innerHTML = "The current password is empty!";
+            thisForm.passwd.focus();
+            return false;
+        } else if ((thisForm.new_passwd.value == "") ||
+            (thisForm.new_passwd.value != thisForm.confirm_new_passwd.value)) {
+            divObj.style.display = "block";
+            divObj.innerHTML = "The passwords you entered did not match!";
+            thisForm.new_passwd.focus();
+            return false;
+        }
+    }
+
+    
+    divObj.style.display = "none";
+    divObj.innerHTML = "";
+
+
+    var divTaLogin = document.getElementById("taLogin");
+    divTaLogin.style.display = "none";
+
+    
+    var prot = window.location.protocol;
+    var server = window.location.host;
+
+    thisForm.prot.value = prot;
+    thisForm.server.value = server;
+    thisForm.inputStr.value = "";
+
+    thisForm.action.value = "getsoftware";
+    document.login.user.disabled = false;
+} 
+
+function checkCapsLock(e) {
+    var el = document.getElementById('divcl');
+    if (!el) return;
+
+    var keycode = e.keyCode? e.keyCode : e.which;
+    var shift = e.shiftKey? e.shiftKey : ((keycode == 16) ? true : false);
+
+    if ((keycode >= 65 && keycode <= 90 && !shift) || (keycode >= 97 && keycode <= 122 && shift))
+        el.style.visibility = 'visible';
+    else
+        el.style.visibility = 'hidden';
+} 
+
+
+
+
+</script>
+
+<script>
+    
+    window.onload = loadPage;
+</script>
+
+<script>
+     
+    $(document).ready(function() {
+      if ((favicon != null) && (favicon != '')) {
+        $('link[rel="shortcut icon"]').attr('href', favicon);
+      }
+
+      if ((logo != null) && (logo != '')) {
+        $('#logo img').attr('src', logo);
+      }
+
+      if ((bg_color != null) && (bg_color != '')) {
+        $('body').css('background', bg_color);
+      }
+
+      if ((gp_portal_name != null) && (gp_portal_name != '')) {
+        $('#heading').html(gp_portal_name);
+      }
+
+      if ((gp_portal_name_color != null) && (gp_portal_name_color != '')) {
+        $('#heading').css('color', gp_portal_name_color);
+      }
+
+      if ((error_text_color != null) && (error_text_color != '')) {
+        $('#dError').css('color', error_text_color);
+      }
+    });
+     
+</script>
+   <script>
+    // Customizations - pass in values below.  Used in GlobalProtect login page
+    // and also getsoftwarepage
+    // Change customization of 'GlobalProtect Portal Home Page' to get uniform look
+
+    var favicon = '';               // URL to the icon displayed in browser's address bar
+    var logo = '';                  // URL to the company logo
+    var bg_color = '';              // Background color
+    var gp_portal_name = '';        // Text under company logo
+    var gp_portal_name_color = '';  // Color for text under company logo
+    var error_text_color = '';      // Text color for logon failure message
+  </script>
+  </head>
+  <body>
+    <div class="loginscreen_logo">
+      <div id="logo">
+        <img src="portal/images/logo-pan-48525a.svg" 
+             onerror="this.onerror=null; this.src='portal/images/logo-pan-48525a.png'"
+             alt="">
+      </div>
+      
+      <div id="activearea">
+        <div id="heading">GlobalProtect Portal</div>
+        <div id="formdiv">
+          <pan_form/>
+<div id="activearea">
+    <div id="formdiv">
+    <form name="login" id="login_form" method="post" autocomplete="off">
+        
+        <input type="hidden" name="prot" value="">
+        <input type="hidden" name="server" value="">
+        <input type='hidden' name="inputStr" value="">
+        <input type='hidden' name="action" value="">
+        <input type='hidden' name="csrf-token" value="zFoKm6NG2JKapTbrVfmo0SVZGm4:1790938005764">
+
+        <div id="taLogin">
+            <div class="login_fields">
+                <div id="dUserName">
+                    <input type="text" id="user" name="user" size="19" placeholder="Name" autocomplete="off">
+                </div>
+                <div id="dInputStr" style="display:none"><br></div>
+                <div id="dPassword">
+                    <input type="password" id="passwd" maxlength="128" size="19" name="passwd" placeholder="Password" autocomplete="off">
+                </div>
+                <div id="dNewPassword" style="display:none">
+                    <input type="password" maxlength="128" size="19" name="new-passwd" id="new_passwd" placeholder="New Password" autocomplete="off">
+                </div>
+                <div id="dConfirmNewPassword" style="display:none">
+                    <input type="password" maxlength="128" size="19" name="confirm-new-passwd" id="confirm_new_passwd" placeholder="confirm New Password" autocomplete="off">
+                </div>
+                <div id="submitbutton">
+                    <input class="buttonFixed" type="submit" id="submit" name="ok" value="Log In" onclick="return submitClicked()">
+                </div>
+            </div>
+        </div>
+
+        <div id="dError" class="error_msg" style="display:none"> </div>
+
+                <div id="dChangePasswordMsgArea">
+                  <div id="dChangePasswordMsgBorder" class="msg">
+                    <div id="dChangePasswordMsg" class="msg">
+                    </div>
+                  </div>
+                </div>
+
+    </form>
+    </div>
+</div>
+
+
+
+
+        </div>
+      </div>
+    </div>
+
+    <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
+    <script src="portal/js/ie10-viewport-bug-workaround.js"></script>
+  </body>
+</html>

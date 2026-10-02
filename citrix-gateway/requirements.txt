@@ -1,0 +1,7 @@
+# Honeypot (app.py + asgi.py) — servidor
+flask>=3.0
+uvicorn>=0.30
+a2wsgi>=1.10
+
+# Captura (download.py)
+requests>=2.31

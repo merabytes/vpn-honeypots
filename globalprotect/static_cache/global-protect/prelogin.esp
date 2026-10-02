@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<prelogin-response>
+<status>Error</status>
+<ccusername></ccusername>
+<autosubmit>false</autosubmit>
+<msg>Valid client certificate is required</msg>
+<newmsg>Required client certificate not found. Please contact your IT administrator.</newmsg>
+<authentication-message>Enter login credentials</authentication-message>
+<username-label>Username</username-label>
+<password-label>Password</password-label>
+<panos-version>1</panos-version>
+<saml-default-browser>yes</saml-default-browser>
+
+<server-ip>213.71.11.74</server-ip><auth-api>no</auth-api><default-browser>no</default-browser><region>ES</region>
+</prelogin-response>

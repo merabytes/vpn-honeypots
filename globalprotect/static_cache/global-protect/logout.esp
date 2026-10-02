@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=.85">
+    <meta http-equiv="pragma" content="no-cache">
+    <title>GlobalProtect Portal</TITLE>
+    <link rel="shortcut icon" type="image/x-icon" href="/global-protect/portal/images/favicon.ico">
+    <link rel="stylesheet" href="/global-protect/portal/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/global-protect/portal/css/latofonts.css">
+
+    
+    <script src="/global-protect/portal/js/ie10-viewport-bug-workaround.js"></script>
+    <script src="/global-protect/portal/js/jquery.min.js"></script>
+    <link rel="stylesheet" href="/global-protect/portal/css/ie10-viewport-bug-workaround.css">
+    <link rel="stylesheet" href="/global-protect/portal/css/login.css">
+
+    
+
+    <script>
+    // Customizations - pass in values below.  This impacts
+    // GlobalPortect Portal page as well as logout page
+    // Change customization in 'GlobalProtect Portal Login Page'
+    // to get uniform look
+
+    var favicon = '';                       // URL to the icon displayed in browser's address bar
+    var logo = '';                          // URL to the company logo
+    var navbar_text = '' ;                  // Navigation bar text
+    var navbar_text_color = '';             // Navigation bar text color
+    var navbar_bg_color = '';               // Navigation bar background color
+    var dropdown_bg_color = '';             // Background color for drop down menus
+    var bg_color = '';                      // GlobalPortal portal main background color
+    var label_custom_app_url = '';          // Label for custom/internal application url
+    var display_globalprotect_agent = 1;
+    var label_globalprotect_agent = '';
+
+    var gp_portal_name = '';        // text under logo for logout page
+    var gp_portal_name_color = '';  // color for text under logo for logout page
+
+    var logout_text_array = [ 
+        "You have successfully logged out of GlobalProtect portal.",
+        "The GlobalProtect portal is not licensed. Purchase or activate the license for your GlobalProtect subscription.",
+        "User not authenticated to GlobalProtect portal.",
+        "System error, contact system administrator.",
+        "System error, failed to delete user session.  Contact system administrator.",
+        "Can not create user session.  Max-capacity reached. Contact system administrator.",
+        "Your login session has expired and you have been logged out for security reasons. Please log in again if you wish to continue."
+    ];
+    var logout_text_color = '';     // color for logout messages
+
+</script>
+
+
+    <script>
+       
+      $(document).ready(function() {
+        if ((favicon != null) && (favicon != '')) {
+          $('link[rel="shortcut icon"]').attr('href', favicon);
+        }
+
+        if ((logo != null) && (logo != '')) {
+          $('#logo img').attr('src', logo);
+        }
+
+        if ((bg_color != null) && (bg_color != '')) {
+          $('body').css('background', bg_color);
+        }
+
+        if ((gp_portal_name != null) && (gp_portal_name != '')) {
+          $('#heading').html(gp_portal_name);
+        }
+
+        if ((gp_portal_name_color != null) && (gp_portal_name_color != '')) {
+          $('#heading').css('color', gp_portal_name_color);
+        }
+        $('div#logout').text(logout_text_array[ 0 ]);
+        if ((logout_text_color != null) && (logout_text_color != '')) {
+          $('#logout').css('color', logout_text_color);
+        }
+      });
+       
+        if(typeof window.Storage !== 'undefined') {
+            window.localStorage.clear();
+        }
+    </script>
+  </head>
+
+  <body>
+    <div class="loginscreen_logo">
+    <div id="logo"><img src="/global-protect/portal/images/logo-pan-48525a.svg" onerror="this.onerror=null; this.src='/global-protect/portal/images/logo-pan-48525a.png'" alt=""></div>
+      <div id="activearea">
+        <div id="heading">GlobalProtect Portal</div>
+        <div id="formdiv">
+          <form name="login_form" id="login_form">
+            <div id="logout" class="msg"> </div>
+            <div id="taLogout">
+              <input class="buttonFixed-logout" type="button" id="submit" name="ok" value="Log In Again" onclick="location.href = '/global-protect/login.esp';">
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+
+    
+    <script src="/global-protect/portal/js/ie10-viewport-bug-workaround.js"></script>
+  </body>
+</html>

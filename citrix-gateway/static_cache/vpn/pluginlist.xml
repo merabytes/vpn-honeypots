@@ -1,0 +1,48 @@
+<repositories>
+	<repository name="default" >
+		<plugin
+			name="Netscaler Gateway EPA plug-in for Windows (32 bit)" type="WIN-EPA"
+			version="25.5.1.15" path="/epa/scripts/win/nsepa_setup.exe"
+			compatibleFrom="12.1.0.0" compatibleTill=""
+		/>
+
+		<plugin
+			name="Netscaler Gateway EPA plug-in for Windows (64 bit)" type="WIN-EPA64"
+			version="25.5.1.15" path="/epa/scripts/win/nsepa_setup.exe"
+			compatibleFrom="12.1.0.0" compatibleTill=""
+		/>
+
+		<plugin
+			name="Netscaler Gateway VPN plug-in for Windows" type="WIN-VPN"
+			version="26.6.1.20" path="/vpns/scripts/vista/AGEE_setup.exe"
+			compatibleFrom="12.1.0.0" compatibleTill=""
+		/>
+
+		<plugin
+			name="EPA scanning Engine (Opswat) for Windows" type="WIN-EPA-ENGINE"
+			version="25.5.1.15" path="/epa/scripts/win/epaPackage.exe" opswatVersion="4.3.4619.0"
+		/>
+
+		<plugin
+			name="Netscaler Gateway EPA plug-in for Mac" type="MAC-EPA"
+			version="22.11.3" path="/epa/scripts/mac/Citrix_Endpoint_Analysis.dmg"
+			compatibleFrom="22.11.3" compatibleTill=""
+		/>
+
+		<plugin
+			name="Netscaler Gateway VPN plug-in for Mac" type="MAC-VPN"
+			version="4.4.8 (518)" path="/vpns/scripts/mac/Citrix_Access_Gateway.dmg"
+			compatibleFrom="4.4.8 (518)" compatibleTill=""
+		/>
+
+		<plugin
+			name="EPA scanning Engine (Opswat) for Mac" type="MAC-EPA-ENGINE"
+			version="1.3.5.7" path="/epa/scripts/mac/MacLibs.zip" opswatVersion="4.3.2138.0"
+		/>
+
+		<plugin
+			name="Netscaler Gateway RfWeb GUI" type="RFWEB-GUI"
+			version="26.6.1.20" path="/logon/logonPoint/"
+		/>
+	</repository>
+</repositories>

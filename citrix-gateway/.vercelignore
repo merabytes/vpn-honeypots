@@ -1,0 +1,14 @@
+# El entorno local no viaja al despliegue
+.venv/
+__pycache__/
+*.pyc
+
+# Capturas locales: llevan credenciales y no pintan nada en la nube
+honeypot.log
+creds.log
+
+# Herramientas que sólo se usan en local
+download.py
+run.sh
+test_e2e.py
+tail_log.py

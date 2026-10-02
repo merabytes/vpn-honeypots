@@ -1,0 +1,272 @@
+{
+  "global-protect/login.esp": {
+    "status": 200,
+    "ctype": "text/html; charset=UTF-8",
+    "size": 11682,
+    "headers": {
+      "Date": "Fri, 02 Oct 2026 10:46:45 GMT",
+      "Content-Type": "text/html; charset=UTF-8",
+      "Content-Length": "11682",
+      "Connection": "keep-alive",
+      "Cache-Control": "no-store, no-cache, must-revalidate, post-check=0, pre-check=0",
+      "Set-Cookie": "SESSID=c52fd4e0-114a-47a3-bd63-e4d7fee72c1a; Path=/; SameSite=Lax; HttpOnly; Secure",
+      "X-Frame-Options": "DENY",
+      "Strict-Transport-Security": "max-age=31536000;",
+      "X-XSS-Protection": "1; mode=block",
+      "X-Content-Type-Options": "nosniff",
+      "Content-Security-Policy": "default-src 'self'; script-src 'self' 'unsafe-inline'; img-src * data:; style-src 'self' 'unsafe-inline'; frame-ancestors 'none';"
+    }
+  },
+  "ssl-vpn/prelogin.esp": {
+    "status": 200,
+    "ctype": "application/xml; charset=UTF-8",
+    "size": 603,
+    "headers": {
+      "Date": "Fri, 02 Oct 2026 10:46:46 GMT",
+      "Content-Type": "application/xml; charset=UTF-8",
+      "Content-Length": "603",
+      "Connection": "keep-alive",
+      "Cache-Control": "no-store, no-cache, must-revalidate, post-check=0, pre-check=0",
+      "Set-Cookie": "SESSID=c52fd4e0-114a-47a3-bd63-e4d7fee72c1a; Path=/; SameSite=Lax; HttpOnly; Secure",
+      "X-Frame-Options": "DENY",
+      "Strict-Transport-Security": "max-age=31536000;",
+      "X-XSS-Protection": "1; mode=block",
+      "X-Content-Type-Options": "nosniff",
+      "Content-Security-Policy": "default-src 'self'; script-src 'self' 'unsafe-inline'; img-src * data:; style-src 'self' 'unsafe-inline'; frame-ancestors 'none';"
+    }
+  },
+  "global-protect/prelogin.esp": {
+    "status": 200,
+    "ctype": "application/xml; charset=UTF-8",
+    "size": 657,
+    "headers": {
+      "Date": "Fri, 02 Oct 2026 10:46:46 GMT",
+      "Content-Type": "application/xml; charset=UTF-8",
+      "Content-Length": "657",
+      "Connection": "keep-alive",
+      "Cache-Control": "no-store, no-cache, must-revalidate, post-check=0, pre-check=0",
+      "Set-Cookie": "SESSID=08cbffa6-9977-438f-8936-7eb63850ca45; Path=/; SameSite=Lax; HttpOnly; Secure",
+      "X-Frame-Options": "DENY",
+      "Strict-Transport-Security": "max-age=31536000;",
+      "X-XSS-Protection": "1; mode=block",
+      "X-Content-Type-Options": "nosniff",
+      "Content-Security-Policy": "default-src 'self'; script-src 'self' 'unsafe-inline'; img-src * data:; style-src 'self' 'unsafe-inline'; frame-ancestors 'none';"
+    }
+  },
+  "global-protect/getsoftwarepage.esp": {
+    "status": 200,
+    "ctype": "text/html; charset=UTF-8",
+    "size": 4512,
+    "headers": {
+      "Date": "Fri, 02 Oct 2026 10:46:46 GMT",
+      "Content-Type": "text/html; charset=UTF-8",
+      "Content-Length": "4512",
+      "Connection": "keep-alive",
+      "Cache-Control": "no-store, no-cache, must-revalidate, post-check=0, pre-check=0",
+      "Set-Cookie": "SESSID=08cbffa6-9977-438f-8936-7eb63850ca45; Path=/; SameSite=Lax; HttpOnly; Secure",
+      "X-Frame-Options": "DENY",
+      "Strict-Transport-Security": "max-age=31536000;",
+      "X-XSS-Protection": "1; mode=block",
+      "X-Content-Type-Options": "nosniff",
+      "Content-Security-Policy": "default-src 'self'; script-src 'self' 'unsafe-inline'; img-src * data:; style-src 'self' 'unsafe-inline'; frame-ancestors 'none';"
+    }
+  },
+  "global-protect/logout.esp": {
+    "status": 200,
+    "ctype": "text/html; charset=UTF-8",
+    "size": 4551,
+    "headers": {
+      "Date": "Fri, 02 Oct 2026 10:46:47 GMT",
+      "Content-Type": "text/html; charset=UTF-8",
+      "Content-Length": "4551",
+      "Connection": "keep-alive",
+      "Cache-Control": "no-store, no-cache, must-revalidate, post-check=0, pre-check=0",
+      "Set-Cookie": "GP_SESSION_CK=; Path=/; SameSite=Lax; Expires=Fri, 02 Oct 2026 10:46:47 GMT; HttpOnly, PAN_GP_CK_VER=; Path=/; SameSite=Lax; Expires=Fri, 02 Oct 2026 10:46:47 GMT; HttpOnly, PAN_GP_CK_VER_ON_CLIENT=; Path=/; SameSite=Lax; Expires=Fri, 02 Oct 2026 10:46:47 GMT; HttpOnly, PAN_GP_CACHE_LOCAL_VER=; Path=/; SameSite=Lax; Expires=Fri, 02 Oct 2026 10:46:47 GMT; HttpOnly, PAN_GP_CACHE_LOCAL_VER_ON_SERVER=; Path=/; SameSite=Lax; Expires=Fri, 02 Oct 2026 10:46:47 GMT; HttpOnly, GP_CLIENT_CK_UPDATES=; Path=/; SameSite=Lax; Expires=Fri, 02 Oct 2026 10:46:47 GMT; HttpOnly, SESSID=; Path=/; SameSite=Lax; Expires=Fri, 02 Oct 2026 10:46:47 GMT; HttpOnly, SESSID=; Path=/; SameSite=Laxglobal-protect; Expires=Fri, 02 Oct 2026 10:46:47 GMT; HttpOnly, SESSID=08cbffa6-9977-438f-8936-7eb63850ca45; Path=/; SameSite=Lax; HttpOnly; Secure",
+      "X-Frame-Options": "DENY",
+      "Strict-Transport-Security": "max-age=31536000;",
+      "X-XSS-Protection": "1; mode=block",
+      "X-Content-Type-Options": "nosniff",
+      "Content-Security-Policy": "default-src 'self'; script-src 'self' 'unsafe-inline'; img-src * data:; style-src 'self' 'unsafe-inline'; frame-ancestors 'none';"
+    }
+  },
+  "404.html": {
+    "status": 404,
+    "ctype": "text/html",
+    "size": 543,
+    "headers": {
+      "Date": "Fri, 02 Oct 2026 10:46:47 GMT",
+      "Content-Type": "text/html",
+      "Content-Length": "543",
+      "Connection": "keep-alive",
+      "Strict-Transport-Security": "max-age=31536000;",
+      "X-XSS-Protection": "1; mode=block",
+      "X-Content-Type-Options": "nosniff",
+      "X-Frame-Options": "DENY",
+      "Content-Security-Policy": "default-src 'self'; script-src 'self' 'unsafe-inline'; img-src * data:; style-src 'self' 'unsafe-inline';"
+    }
+  },
+  "/global-protect/portal/css/bootstrap.min.css": {
+    "status": 200,
+    "ctype": "text/css",
+    "size": 155758,
+    "headers": {
+      "Date": "Fri, 02 Oct 2026 10:46:48 GMT",
+      "Content-Type": "text/css",
+      "Content-Length": "155758",
+      "Connection": "keep-alive",
+      "ETag": "\"6a91b3ab-2606e\"",
+      "Strict-Transport-Security": "max-age=31536000;",
+      "X-XSS-Protection": "1; mode=block",
+      "X-Content-Type-Options": "nosniff",
+      "Content-Security-Policy": "default-src 'self'; script-src 'self' 'unsafe-inline'; img-src * data:; style-src 'self' 'unsafe-inline'; frame-ancestors 'none';",
+      "Accept-Ranges": "bytes"
+    }
+  },
+  "/global-protect/portal/css/latofonts.css": {
+    "status": 200,
+    "ctype": "text/css",
+    "size": 10032,
+    "headers": {
+      "Date": "Fri, 02 Oct 2026 10:46:48 GMT",
+      "Content-Type": "text/css",
+      "Content-Length": "10032",
+      "Connection": "keep-alive",
+      "ETag": "\"6a91b3ab-2730\"",
+      "Strict-Transport-Security": "max-age=31536000;",
+      "X-XSS-Protection": "1; mode=block",
+      "X-Content-Type-Options": "nosniff",
+      "Content-Security-Policy": "default-src 'self'; script-src 'self' 'unsafe-inline'; img-src * data:; style-src 'self' 'unsafe-inline'; frame-ancestors 'none';",
+      "Accept-Ranges": "bytes"
+    }
+  },
+  "/global-protect/portal/css/login.css": {
+    "status": 200,
+    "ctype": "text/css",
+    "size": 22243,
+    "headers": {
+      "Date": "Fri, 02 Oct 2026 10:46:48 GMT",
+      "Content-Type": "text/css",
+      "Content-Length": "22243",
+      "Connection": "keep-alive",
+      "ETag": "\"6a91b3ab-56e3\"",
+      "Strict-Transport-Security": "max-age=31536000;",
+      "X-XSS-Protection": "1; mode=block",
+      "X-Content-Type-Options": "nosniff",
+      "Content-Security-Policy": "default-src 'self'; script-src 'self' 'unsafe-inline'; img-src * data:; style-src 'self' 'unsafe-inline'; frame-ancestors 'none';",
+      "Accept-Ranges": "bytes"
+    }
+  },
+  "/global-protect/portal/css/ie10-viewport-bug-workaround.css": {
+    "status": 200,
+    "ctype": "text/css",
+    "size": 532,
+    "headers": {
+      "Date": "Fri, 02 Oct 2026 10:46:49 GMT",
+      "Content-Type": "text/css",
+      "Content-Length": "532",
+      "Connection": "keep-alive",
+      "ETag": "\"6a91b3ab-214\"",
+      "Strict-Transport-Security": "max-age=31536000;",
+      "X-XSS-Protection": "1; mode=block",
+      "X-Content-Type-Options": "nosniff",
+      "Content-Security-Policy": "default-src 'self'; script-src 'self' 'unsafe-inline'; img-src * data:; style-src 'self' 'unsafe-inline'; frame-ancestors 'none';",
+      "Accept-Ranges": "bytes"
+    }
+  },
+  "/global-protect/portal/js/jquery.min.js": {
+    "status": 200,
+    "ctype": "application/x-javascript",
+    "size": 89476,
+    "headers": {
+      "Date": "Fri, 02 Oct 2026 10:46:49 GMT",
+      "Content-Type": "application/x-javascript",
+      "Content-Length": "89476",
+      "Connection": "keep-alive",
+      "ETag": "\"6a91b3ab-15d84\"",
+      "Strict-Transport-Security": "max-age=31536000;",
+      "X-XSS-Protection": "1; mode=block",
+      "X-Content-Type-Options": "nosniff",
+      "Content-Security-Policy": "default-src 'self'; script-src 'self' 'unsafe-inline'; img-src * data:; style-src 'self' 'unsafe-inline'; frame-ancestors 'none';",
+      "Accept-Ranges": "bytes"
+    }
+  },
+  "/global-protect/portal/js/ie10-viewport-bug-workaround.js": {
+    "status": 200,
+    "ctype": "application/x-javascript",
+    "size": 664,
+    "headers": {
+      "Date": "Fri, 02 Oct 2026 10:46:49 GMT",
+      "Content-Type": "application/x-javascript",
+      "Content-Length": "664",
+      "Connection": "keep-alive",
+      "ETag": "\"6a91b3ab-298\"",
+      "Strict-Transport-Security": "max-age=31536000;",
+      "X-XSS-Protection": "1; mode=block",
+      "X-Content-Type-Options": "nosniff",
+      "Content-Security-Policy": "default-src 'self'; script-src 'self' 'unsafe-inline'; img-src * data:; style-src 'self' 'unsafe-inline'; frame-ancestors 'none';",
+      "Accept-Ranges": "bytes"
+    }
+  },
+  "/global-protect/portal/images/favicon.ico": {
+    "status": 200,
+    "ctype": "image/x-icon",
+    "size": 2518,
+    "headers": {
+      "Date": "Fri, 02 Oct 2026 10:46:49 GMT",
+      "Content-Type": "image/x-icon",
+      "Content-Length": "2518",
+      "Connection": "keep-alive",
+      "ETag": "\"6a91b3ab-9d6\"",
+      "Expires": "Mon, 12 Oct 2026 10:46:49 GMT",
+      "Cache-Control": "max-age=864000",
+      "Strict-Transport-Security": "max-age=31536000;",
+      "X-XSS-Protection": "1; mode=block",
+      "X-Content-Type-Options": "nosniff",
+      "Content-Security-Policy": "default-src 'self'; script-src 'self' 'unsafe-inline'; img-src * data:; style-src 'self' 'unsafe-inline'; frame-ancestors 'none';",
+      "Accept-Ranges": "bytes"
+    }
+  },
+  "/global-protect/portal/images/logo-pan-48525a.svg": {
+    "status": 200,
+    "ctype": "image/svg+xml",
+    "size": 12316,
+    "headers": {
+      "Date": "Fri, 02 Oct 2026 10:46:50 GMT",
+      "Content-Type": "image/svg+xml",
+      "Content-Length": "12316",
+      "Connection": "keep-alive",
+      "ETag": "\"6a91b3ab-301c\"",
+      "Expires": "Mon, 12 Oct 2026 10:46:50 GMT",
+      "Cache-Control": "max-age=864000",
+      "Strict-Transport-Security": "max-age=31536000;",
+      "X-XSS-Protection": "1; mode=block",
+      "X-Content-Type-Options": "nosniff",
+      "Content-Security-Policy": "default-src 'self'; script-src 'self' 'unsafe-inline'; img-src * data:; style-src 'self' 'unsafe-inline'; frame-ancestors 'none';",
+      "Accept-Ranges": "bytes"
+    }
+  },
+  "/global-protect/portal/images/logo-pan-48525a.png": {
+    "status": 200,
+    "ctype": "image/png",
+    "size": 8947,
+    "headers": {
+      "Date": "Fri, 02 Oct 2026 10:46:50 GMT",
+      "Content-Type": "image/png",
+      "Content-Length": "8947",
+      "Connection": "keep-alive",
+      "ETag": "\"6a91b3ab-22f3\"",
+      "Expires": "Mon, 12 Oct 2026 10:46:50 GMT",
+      "Cache-Control": "max-age=864000",
+      "Strict-Transport-Security": "max-age=31536000;",
+      "X-XSS-Protection": "1; mode=block",
+      "X-Content-Type-Options": "nosniff",
+      "Content-Security-Policy": "default-src 'self'; script-src 'self' 'unsafe-inline'; img-src * data:; style-src 'self' 'unsafe-inline'; frame-ancestors 'none';",
+      "Accept-Ranges": "bytes"
+    }
+  },
+  "_capture": {
+    "host_placeholder": "{{HOST}}",
+    "captured_at": "2026-10-02T10:47:01Z",
+    "files": 41
+  }
+}

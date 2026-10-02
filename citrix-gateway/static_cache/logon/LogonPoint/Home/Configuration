@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?><clientSettings><authManager loginURL="/p/u/getAuthenticationRequirements.do" getUsernameURL="Authentication/GetUserName" logoffURL="Authentication/LogOff" changeCredentialsURL="/p/a/getCredentialUpdateRequirements.do" userLanguages="en-US,en;q=0.9" /><session timeout="20" loginFormTimeout="5" />"
+<storeProxy keepAliveURL="Home/KeepAlive">
+        <resourcesProxy listURL="Resources/List" resourceDetails="default" />
+        <sessionsProxy listAvailableURL="Sessions/ListAvailable" disconnectURL="Sessions/Disconnect" logoffURL="Sessions/LogOff" />
+        <clientAssistantProxy getDetectionTicketURL="ClientAssistant/GetDetectionTicket" getDetectionStatusURL="ClientAssistant/GetDetectionStatus" />
+</storeProxy>
+<pluginAssistant enabled="true" upgradeAtLogin="false" showAfterLogin="true" showOnlyIfRequiredByApps="true">
+        <win32 path="https://downloadplugins.citrix.com/Windows/CitrixWorkspaceAppWeb.exe" />
+        <macOS path="https://downloadplugins.citrix.com/Mac/CitrixWorkspaceAppWeb.dmg" minimumSupportedOSVersion="10.6" />
+        <html5 enabled="Fallback" platforms="Firefox;Chrome;Version/([6-9]|\d\d).*Safari;MSIE \d\d;Trident/([6-9]|\d\d);Android;iPad;iPhone;iPod;" launchURL="clients/HTML5Client/src/SessionWindow.html" chromeAppOrigins="chrome-extension://haiffjcadagjlijoggckpgfnoeiflnem|chrome-extension://lbfgjakkeeccemhonnolnmglmfmccaag" chromeAppPreferences="" />
+        <protocolHandler enabled="true" platforms="(Macintosh|Windows NT).*((Firefox/((5[2-9]|[6789][0-9])|\d\d\d))|(Chrome/((4[2-9]|[56789][0-9])|\d\d\d)))(?!.*Edge)|Macintosh.*Version/(1[2-9]|[2-9][0-9]).*Safari" skipDoubleHopCheckWhenDisabled="false" />
+</pluginAssistant>
+<userInterface frameOptions="deny" autoLaunchDesktop="false">
+        <workspaceControl enabled="false" autoReconnectAtLogon="false" logoffAction="disconnect" showReconnectButton="true" showDisconnectButton="true" />
+        <uiViews showDesktopsView="true" showAppsView="true" defaultView="apps" />
+        <receiverConfiguration enabled="false" showOnlyIfRequiredByApps="true" downloadURL="ServiceRecord/GetDocument/receiverconfig.cr" />
+        <appShortcuts enabled="false" allowSessionReconnect="false" />
+</userInterface>
+<plugins>
+        <plugin name="nsg-epa" src="plugins/ns-gateway/nsg-epa.js" />
+        <plugin name="nsg-setclient" src="plugins/ns-gateway/nsg-setclient.js" />
+        <plugin name="ns-nfactor" src="plugins/ns-gateway/ns-nfactor.js" />
+</plugins>
+
+</clientSettings>

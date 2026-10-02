@@ -1,0 +1,263 @@
+{
+  "vpn/pluginlist.xml": {
+    "status": 200,
+    "ctype": "application/xml; charset=utf-8",
+    "size": 1547,
+    "headers": {
+      "Date": "Fri, 02 Oct 2026 10:05:03 GMT",
+      "Server": "Apache",
+      "X-Frame-Options": "SAMEORIGIN",
+      "Last-Modified": "Sat, 26 Sep 2026 19:05:27 GMT",
+      "ETag": "\"60b-65c67840b8bc0\"",
+      "Accept-Ranges": "bytes",
+      "Content-Length": "1547",
+      "Feature-Policy": "camera 'none'; microphone 'none'; geolocation 'none'",
+      "Referrer-Policy": "no-referrer",
+      "X-XSS-Protection": "1; mode=block",
+      "X-Content-Type-Options": "nosniff",
+      "Content-Security-Policy": "default-src 'self'; script-src https://www.google.com/recaptcha/api.js https://www.gstatic.com/recaptcha/releases/ https://{{HOST}} 'self' https://{{HOST}} 'unsafe-inline' 'unsafe-eval'; connect-src 'self'; img-src http://localhost:* https://{{HOST}} 'self' data: http: https:; style-src 'self' 'unsafe-inline'; font-src 'self' data:; frame-src https://www.google.com/recaptcha/ com.citrix.agmacepa://* receiver://* citrixng://* com.citrix.nsgclient://* nsgcepa://* application://* 'self'; child-src 'self' com.citrix.agmacepa://* receiver://* citrixng://* com.citrix.nsgclient://* nsgcepa://nsgcepa application://*; form-action 'self'; object-src 'none'; report-uri /nscsp_violation/report_uri",
+      "Content-Type": "application/xml; charset=utf-8",
+      "Keep-Alive": "timeout=15, max=100",
+      "Connection": "Keep-Alive",
+      "Cache-Control": "no-cache, no-store",
+      "Plugin-Upgrade": "epa_win:Always;epa_mac:Always;epa_linux:Always;vpn_win:Always;vpn_mac:Always;vpn_linux:Always;",
+      "Strict-Transport-Security": "max-age=15768000"
+    }
+  },
+  "nf/auth/getAuthenticationRequirements.do": {
+    "status": 200,
+    "ctype": "application/vnd.citrix.authenticateresponse-1+xml; charset=utf-8",
+    "size": 1624,
+    "headers": {
+      "Strict-Transport-Security": "max-age=15768000",
+      "Content-Security-Policy": "default-src 'self'; script-src 'self'; connect-src 'self'; img-src http://localhost:* 'self' data:; style-src 'self' 'unsafe-inline'; font-src 'self' data:; frame-src 'self'; child-src 'self' com.citrix.agmacepa://* citrixng://* com.citrix.nsgclient://* vmware-view:// nsgcepa://nsgcepa application://*; form-action  'self'; object-src 'none'; base-uri 'self'; report-uri /nscsp_violation/report_uri",
+      "X-Content-Type-Options": "nosniff",
+      "X-XSS-Protection": "1; mode=block",
+      "Content-Length": "1624",
+      "Cache-control": "no-cache, no-store, must-revalidate",
+      "Pragma": "no-cache",
+      "Content-Type": "application/vnd.citrix.authenticateresponse-1+xml; charset=utf-8",
+      "X-Citrix-Application": "Receiver for Web"
+    }
+  },
+  "nf/auth/doLogoff_response.xml": {
+    "status": 200,
+    "ctype": "application/vnd.citrix.authenticateresponse-1+xml; charset=utf-8",
+    "size": 201,
+    "headers": {
+      "Strict-Transport-Security": "max-age=15768000",
+      "Content-Security-Policy": "default-src 'self'; script-src 'self'; connect-src 'self'; img-src http://localhost:* 'self' data:; style-src 'self' 'unsafe-inline'; font-src 'self' data:; frame-src 'self'; child-src 'self' com.citrix.agmacepa://* citrixng://* com.citrix.nsgclient://* vmware-view:// nsgcepa://nsgcepa application://*; form-action  'self'; object-src 'none'; base-uri 'self'; report-uri /nscsp_violation/report_uri",
+      "Set-Cookie": "NSC_AAAC=xyz;Path=/;expires=Wednesday, 09-Nov-1999 23:12:40 GMT;Secure, NSC_EPAC=xyz;Path=/;expires=Wednesday, 09-Nov-1999 23:12:40 GMT;Secure, NSC_TASS=xyz;Path=/;expires=Wednesday, 09-Nov-1999 23:12:40 GMT;Secure, NSC_TMAP=xyz;Path=/;expires=Wednesday, 09-Nov-1999 23:12:40 GMT;Secure, NSC_USER=xyz;Path=/;expires=Wednesday, 09-Nov-1999 23:12:40 GMT;Secure, NSC_TEMP=xyz;Path=/;expires=Wednesday, 09-Nov-1999 23:12:40 GMT;Secure, NSC_PERS=xyz;Path=/;expires=Wednesday, 09-Nov-1999 23:12:40 GMT;Secure, NSC_TMAV=xyz;Path=/;expires=Wednesday, 09-Nov-1999 23:12:40 GMT;Secure, NSC_TMAC=xyz;Path=/;expires=Wednesday, 09-Nov-1999 23:12:40 GMT;Secure, NSC_TEMP=xyz;Path=/;expires=Wednesday, 09-Nov-1999 23:12:40 GMT, NSC_PERS=xyz;Path=/;expires=Wednesday, 09-Nov-1999 23:12:40 GMT, NSC_AAAC=xyz;Path=/;expires=Wednesday, 09-Nov-1999 23:12:40 GMT",
+      "X-Content-Type-Options": "nosniff",
+      "X-XSS-Protection": "1; mode=block",
+      "Connection": "close",
+      "Content-Length": "201",
+      "Cache-control": "no-cache, no-store, must-revalidate",
+      "Pragma": "no-cache",
+      "Content-Type": "application/vnd.citrix.authenticateresponse-1+xml; charset=utf-8",
+      "X-Citrix-Application": "Receiver for Web"
+    }
+  },
+  "oauth/idp/.well-known/openid-configuration.json": {
+    "status": 200,
+    "ctype": "application/json; charset=utf-8",
+    "size": 753,
+    "headers": {
+      "Strict-Transport-Security": "max-age=15768000",
+      "Content-Security-Policy": "default-src 'self'; script-src 'self'; connect-src 'self'; img-src http://localhost:* 'self' data:; style-src 'self' 'unsafe-inline'; font-src 'self' data:; frame-src 'self'; child-src 'self' com.citrix.agmacepa://* citrixng://* com.citrix.nsgclient://* vmware-view:// nsgcepa://nsgcepa application://*; form-action  'self'; object-src 'none'; base-uri 'self'; report-uri /nscsp_violation/report_uri",
+      "X-Content-Type-Options": "nosniff",
+      "X-XSS-Protection": "1; mode=block",
+      "Content-Length": "753",
+      "Cache-control": "no-cache, no-store, must-revalidate",
+      "Pragma": "no-cache",
+      "Content-Type": "application/json; charset=utf-8",
+      "X-Citrix-Application": "Receiver for Web"
+    }
+  },
+  "logon/LogonPoint/tmindex.html": {
+    "status": 200,
+    "ctype": "text/html; charset=utf-8",
+    "size": 43162,
+    "headers": {
+      "Age": "20",
+      "Date": "Fri, 02 Oct 2026 10:04:46 GMT",
+      "Cache-Control": "no-cache,no-store,must-revalidate",
+      "Connection": "Keep-Alive",
+      "Via": "NS-CACHE-10.0:  15",
+      "ETag": "\"a89a-65c65e5602680\"",
+      "Server": "Apache",
+      "X-Frame-Options": "SAMEORIGIN",
+      "Last-Modified": "Sat, 26 Sep 2026 17:09:30 GMT",
+      "Accept-Ranges": "bytes",
+      "Content-Length": "43162",
+      "Feature-Policy": "camera 'none'; microphone 'none'; geolocation 'none'",
+      "Referrer-Policy": "no-referrer",
+      "X-XSS-Protection": "1; mode=block",
+      "X-Content-Type-Options": "nosniff",
+      "Content-Security-Policy": "default-src 'self'; script-src https://www.google.com/recaptcha/api.js https://www.gstatic.com/recaptcha/releases/ https://{{HOST}} 'self' https://{{HOST}} 'unsafe-inline' 'unsafe-eval'; connect-src 'self'; img-src http://localhost:* https://{{HOST}} 'self' data: http: https:; style-src 'self' 'unsafe-inline'; font-src 'self' data:; frame-src https://www.google.com/recaptcha/ com.citrix.agmacepa://* receiver://* citrixng://* com.citrix.nsgclient://* nsgcepa://* application://* 'self'; child-src 'self' com.citrix.agmacepa://* receiver://* citrixng://* com.citrix.nsgclient://* nsgcepa://nsgcepa application://*; form-action 'self'; object-src 'none'; report-uri /nscsp_violation/report_uri",
+      "Content-Type": "text/html; charset=utf-8",
+      "Strict-Transport-Security": "max-age=15768000"
+    }
+  },
+  "logon/LogonPoint/Home/Configuration": {
+    "status": 200,
+    "ctype": "application/xml; charset=utf-8",
+    "size": 2505,
+    "headers": {
+      "Date": "Fri, 02 Oct 2026 10:05:05 GMT",
+      "Server": "Apache",
+      "X-Frame-Options": "SAMEORIGIN",
+      "Last-Modified": "Tue, 15 Sep 2026 12:00:01 GMT",
+      "ETag": "\"896-65b844a5cfb54\"",
+      "Accept-Ranges": "bytes",
+      "Content-Length": "2505",
+      "Feature-Policy": "camera 'none'; microphone 'none'; geolocation 'none'",
+      "Referrer-Policy": "no-referrer",
+      "X-XSS-Protection": "1; mode=block",
+      "X-Content-Type-Options": "nosniff",
+      "Content-Security-Policy": "default-src 'self'; script-src https://www.google.com/recaptcha/api.js https://www.gstatic.com/recaptcha/releases/ https://{{HOST}} 'self' https://{{HOST}} 'unsafe-inline' 'unsafe-eval'; connect-src 'self'; img-src http://localhost:* https://{{HOST}} 'self' data: http: https:; style-src 'self' 'unsafe-inline'; font-src 'self' data:; frame-src https://www.google.com/recaptcha/ com.citrix.agmacepa://* receiver://* citrixng://* com.citrix.nsgclient://* nsgcepa://* application://* 'self'; child-src 'self' com.citrix.agmacepa://* receiver://* citrixng://* com.citrix.nsgclient://* nsgcepa://nsgcepa application://*; form-action 'self'; object-src 'none'; report-uri /nscsp_violation/report_uri",
+      "Cache-Control": "max-age=0 no-cache, no-store, must-revalidate",
+      "X-Citrix-Application": "Receiver for Web",
+      "Keep-Alive": "timeout=15, max=99",
+      "Connection": "Keep-Alive",
+      "Content-Type": "application/xml; charset=utf-8",
+      "Strict-Transport-Security": "max-age=15768000"
+    }
+  },
+  "cgi/Resources/List": {
+    "status": 200,
+    "ctype": "text/plain; charset=utf-8",
+    "size": 22,
+    "headers": {
+      "Cache-Control": "no-cache, no-store, must-revalidate",
+      "Pragma": "no-cache",
+      "Content-Type": "text/plain; charset=utf-8",
+      "Expires": "-1",
+      "X-Citrix-Application": "Receiver for Web",
+      "CitrixWebReceiver-Authenticate": "reason=\"notoken\", location=\"/cgi/GetAuthMethods\"",
+      "Content-Length": "22",
+      "Strict-Transport-Security": "max-age=15768000"
+    }
+  },
+  "cgi/GetAuthMethods": {
+    "status": 200,
+    "ctype": "application/vnd.citrix.authenticateresponse-1+xml; charset=utf-8",
+    "size": 143,
+    "headers": {
+      "Strict-Transport-Security": "max-age=15768000",
+      "Content-Security-Policy": "default-src 'self'; script-src 'self'; connect-src 'self'; img-src http://localhost:* 'self' data:; style-src 'self' 'unsafe-inline'; font-src 'self' data:; frame-src 'self'; child-src 'self' com.citrix.agmacepa://* citrixng://* com.citrix.nsgclient://* vmware-view:// nsgcepa://nsgcepa application://*; form-action  'self'; object-src 'none'; base-uri 'self'; report-uri /nscsp_violation/report_uri",
+      "X-Content-Type-Options": "nosniff",
+      "X-XSS-Protection": "1; mode=block",
+      "Content-Length": "143",
+      "Cache-control": "no-cache, no-store, must-revalidate",
+      "Pragma": "no-cache",
+      "Content-Type": "application/vnd.citrix.authenticateresponse-1+xml; charset=utf-8",
+      "X-Citrix-Application": "Receiver for Web"
+    }
+  },
+  "/vpn/index.html": {
+    "status": 200,
+    "ctype": "text/html; charset=utf-8",
+    "size": 43162
+  },
+  "/vpns/cgi/login": {
+    "status": 200,
+    "ctype": "text/html; charset=utf-8",
+    "size": 43162
+  },
+  "/cgi/login": {
+    "status": 200,
+    "ctype": "text/html; charset=utf-8",
+    "size": 43162
+  },
+  "/logon/LogonPoint/custom/style.css": {
+    "status": 200,
+    "ctype": "text/css; charset=utf-8",
+    "size": 0
+  },
+  "/logon/LogonPoint/custom/script.js": {
+    "status": 200,
+    "ctype": "application/javascript; charset=utf-8",
+    "size": 0
+  },
+  "/logon/LogonPoint/custom/strings.en.js": {
+    "status": 200,
+    "ctype": "application/javascript; charset=utf-8",
+    "size": 438
+  },
+  "/logon/LogonPoint/custom/strings.en.json": {
+    "status": 200,
+    "ctype": "application/json; charset=utf-8",
+    "size": 3
+  },
+  "/logon/LogonPoint/receiver/js/localization/en/ctxs.strings.js": {
+    "status": 200,
+    "ctype": "application/javascript; charset=utf-8",
+    "size": 41294
+  },
+  "/logon/LogonPoint/plugins/ns-gateway/nsg-epa.js": {
+    "status": 200,
+    "ctype": "application/javascript; charset=utf-8",
+    "size": 40825
+  },
+  "/logon/LogonPoint/plugins/ns-gateway/nsg-setclient.js": {
+    "status": 200,
+    "ctype": "application/javascript; charset=utf-8",
+    "size": 77180
+  },
+  "/logon/LogonPoint/plugins/ns-gateway/ns-nfactor.js": {
+    "status": 200,
+    "ctype": "application/javascript; charset=utf-8",
+    "size": 34846
+  },
+  "/logon/LogonPoint/login.htm": {
+    "status": 404,
+    "ctype": "text/html; charset=iso-8859-1",
+    "size": 236
+  },
+  "/logon/LogonPoint/receiver.html": {
+    "status": 404,
+    "ctype": "text/html; charset=iso-8859-1",
+    "size": 236
+  },
+  "/logon/LogonPoint/resources/index.html": {
+    "status": 404,
+    "ctype": "text/html; charset=iso-8859-1",
+    "size": 236
+  },
+  "/logon/LogonPoint/receiver/css/ctxs.large-ui.min.css": {
+    "status": 200,
+    "ctype": "text/css; charset=utf-8",
+    "size": 79556
+  },
+  "/logon/LogonPoint/receiver/css/ctxs.medium-ui.min.css": {
+    "status": 200,
+    "ctype": "text/css; charset=utf-8",
+    "size": 94984
+  },
+  "/logon/LogonPoint/receiver/css/ctxs.small-ui.min.css": {
+    "status": 200,
+    "ctype": "text/css; charset=utf-8",
+    "size": 74250
+  },
+  "/logon/LogonPoint/receiver/css/ctxs.no-js-ui.min.css": {
+    "status": 200,
+    "ctype": "text/css; charset=utf-8",
+    "size": 22261
+  },
+  "/logon/themes/Default/css/theme.css": {
+    "status": 200,
+    "ctype": "text/css; charset=utf-8",
+    "size": 1431
+  },
+  "/logon/themes/Default/custom_media/Fond_Noir.jpg": {
+    "status": 200,
+    "ctype": "image/jpeg",
+    "size": 43480
+  },
+  "_capture": {
+    "host_placeholder": "{{HOST}}",
+    "captured_at": "2026-10-02T10:05:23Z",
+    "files": 182
+  }
+}
